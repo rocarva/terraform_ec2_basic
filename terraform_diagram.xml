@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Terraform Diagram" id="terraform_diagram">
+    <mxGraphModel dx="1084" dy="669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Django -->
+        <mxCell id="django" value="Django" style="shape=ellipse;fillColor=#34a853;strokeColor=#000000;fontSize=14;fontColor=#FFFFFF" vertex="1" parent="1">
+          <mxGeometry x="320" y="30" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- AWS EC2 -->
+        <mxCell id="ec2" value="AWS EC2" style="shape=hexagon;fillColor=#FF9900;strokeColor=#000000;fontSize=14;fontColor=#FFFFFF" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="80" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Ansible -->
+        <mxCell id="ansible" value="Ansible" style="shape=ellipse;fillColor=#000000;strokeColor=#FFFFFF;fontSize=14;fontColor=#FFFFFF" vertex="1" parent="1">
+          <mxGeometry x="320" y="180" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Terraform -->
+        <mxCell id="terraform" value="Terraform" style="shape=parallelogram;fillColor=#7B42BC;strokeColor=#000000;fontSize=14;fontColor=#FFFFFF" vertex="1" parent="1">
+          <mxGeometry x="100" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Security Group -->
+        <mxCell id="security_group" value="Security Group" style="shape=shield;fillColor=#4285F4;strokeColor=#000000;fontSize=14;fontColor=#FFFFFF" vertex="1" parent="1">
+          <mxGeometry x="320" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell id="edge1" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="ec2" target="django">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge2" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="ansible" target="ec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge3" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="terraform" target="security_group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge4" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="security_group" target="ec2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Security Group Rules -->
+        <mxCell id="rule_8080" value="(8080) Django" style="shape=rectangle;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="320" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rule_22" value="(22) SSH" style="shape=rectangle;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="320" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rule_out" value="(Saída) 0.0.0.0/0" style="shape=rectangle;fillColor=#FFFFFF;strokeColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="370" width="120" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Connecting Rules to Security Group -->
+        <mxCell id="edge5" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="security_group" target="rule_8080">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge6" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="security_group" target="rule_22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge7" style="edgeStyle=elbowEdgeStyle;strokeColor=#000000;" edge="1" parent="1" source="security_group" target="rule_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

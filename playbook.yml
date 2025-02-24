@@ -1,0 +1,45 @@
+- hosts: terraform-ansible
+  become: yes  
+  tasks:
+    - name: Instalando o Python3, virtualenv e pip
+      apt:
+        pkg:
+          - python3
+          - python3-venv  
+          - python3-pip
+        state: present
+        update_cache: yes
+
+    - name: Criando diretório do projeto, se não existir
+      file:
+        path: /home/ubuntu/tcc
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Criando ambiente virtual, se não existir
+      command: python3 -m venv /home/ubuntu/tcc/venv
+      args:
+        creates: /home/ubuntu/tcc/venv
+
+    - name: Instalando dependências com pip (Django e Django Rest Framework)
+      pip:
+        virtualenv: /home/ubuntu/tcc/venv
+        name:
+          - django
+          - djangorestframework
+
+    - name: Iniciando o projeto Django se ainda não existir
+      shell: |
+        . /home/ubuntu/tcc/venv/bin/activate
+        test -d /home/ubuntu/tcc/setup || django-admin startproject setup /home/ubuntu/tcc/
+      args:
+        executable: /bin/bash
+
+    - name: Alterando o ALLOWED_HOSTS no settings.py
+      lineinfile:
+        path: /home/ubuntu/tcc/setup/settings.py
+        regex: '^ALLOWED_HOSTS\s*='
+        line: 'ALLOWED_HOSTS = ["*"]'
+        backrefs: no

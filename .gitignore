@@ -1,0 +1,31 @@
+# Terraform
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Chaves SSH e Credenciais Sensíveis
+*.pem
+*.key
+*.secrets
+config
+
+# Python e Virtualenv
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+*.log
+*.sqlite3
+
+# Ansible
+*.retry
+ansible.log
+
+# Diretórios temporários e arquivos de sistema
+.DS_Store
+Thumbs.db
+*.drawio
+*.png
