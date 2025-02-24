@@ -28,4 +28,3 @@ ansible.log
 .DS_Store
 Thumbs.db
 *.drawio
-*.png
